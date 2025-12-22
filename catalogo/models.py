@@ -24,6 +24,10 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
 
+    @property
+    def precio_pagina(self):
+        return f"{int(self.precio):,}".replace(",", ".")
+
 class Pedido(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_pedido = models.DateTimeField(auto_now_add=True)

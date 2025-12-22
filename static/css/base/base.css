@@ -1,0 +1,12 @@
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color:#000000 !important;
+    min-height: 100px;
+    z-index: 1000;
+}
+
+.logo_1{
+    width: 18%;
+}
