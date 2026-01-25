@@ -19,6 +19,7 @@ class Producto(models.Model):
     stock = models.IntegerField(default=0)
     imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
     disponible = models.BooleanField(default=True)
+    destacado = models.BooleanField(default=False, verbose_name="¿Mostrar en Home?")
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

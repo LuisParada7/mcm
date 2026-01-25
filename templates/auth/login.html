@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+MicroMania
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/auth/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="form-container sign-in">
+        <form method="post">
+            {% csrf_token %}
+            <h2 class="login-title">Inicio de Sesión</h2>
+            <span>Por favor ingrese su nombre de usuario y contraseña:</span>
+            <div class="inputbox">
+                <ion-icon name="mail-outline"></ion-icon>
+                <input type="text" name="username" required autocomplete="off">
+                <label>Nombre de usuario</label>
+            </div>
+            <div class="inputbox">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input type="password" name="password" required>
+                <label>Contraseña</label>
+            </div>
+            <div class="forget">
+                <a href="/reset_password/">¿Olvidaste tu contraseña?</a>
+            </div>
+            <div>
+                <button class="btn-login" type="submit" name="login_submit">Iniciar sesión</button>
+            </div>
+            <a href="/" class="btn-google">
+                <img src="{% static 'image/logo-google.png' %}">
+                <span>Cuenta de Google</span>
+            </a>
+            <div class="register">
+                <a href="/register/">Crea una cuenta aquí</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

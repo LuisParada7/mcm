@@ -1,0 +1,33 @@
+.card-animada {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border-radius: 20px;
+    border: 3px solid rgba(137, 43, 226, 0);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
+    overflow: hidden;
+}
+
+.card-animada:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 15px 40px rgba(138, 43, 226, 0.8);
+    border-color: #8A2BE2;
+}
+
+.card-title{
+    color: black;
+    font-weight: bold;
+}
+
+.precio{
+    color: #8A2BE2;
+    font-weight: bold;
+}
+
+.h-destacados {
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 40px;
+}
+
+.h-highlight{
+    color: #ff9500;
+}

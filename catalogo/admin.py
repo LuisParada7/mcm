@@ -33,7 +33,7 @@ class CategoriaAdmin(ImportExportModelAdmin):
 class ProductoAdmin(ImportExportModelAdmin):
     list_display = ('nombre', 'categoria', 'precio', 'stock', 'disponible', 'fecha_creacion')
     list_filter = ('categoria', 'disponible', 'fecha_creacion')
-    search_fields = ('nombre', 'descripcion', 'categoria__nombre')
+    search_fields = ('nombre', 'descripcion', 'categoria__nombre', 'destacado')
     ordering = ['-fecha_creacion']
     list_editable = ('precio', 'stock', 'disponible')
 
@@ -42,7 +42,7 @@ class ProductoAdmin(ImportExportModelAdmin):
             'fields': ('nombre', 'categoria', 'descripcion')
         }),
         ('Inventario y Precios', {
-            'fields': ('precio', 'stock', 'disponible')
+            'fields': ('precio', 'stock', 'disponible', 'destacado')
         }),
         ('Multimedia', {
             'fields': ('imagen',)

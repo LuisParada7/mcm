@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+MicroMania
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/auth/register.css' %}">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock %}
+
+{% block content %}
+<section>
+
+  <div class="error-container">
+    {% if form.non_field_errors %}
+    <div class="form-errors">
+      {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+
+    {% for field in form %}
+    {% if field.errors %}
+    <div class="form-errors">
+      {{ field.errors }}
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="register-card">
+    <div class="image-side">
+       <img src="{% static 'image/Register.png' %}" alt="Registro">
+       <div class="image-text-overlay">
+           <h1>¡Bienvenido a MicroMania!</h1>
+           <p>Ingresa tus datos para crear tu cuenta y descubre productos diseñados para mejorar tu rendimiento.</p>
+       </div>
+    </div>
+    <div class="form-side">
+      <form action="" method="post">
+        {% csrf_token%}
+        <div>
+          <span class="icon"><i class='bx bxs-user-account'></i></span>
+          <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+        </div>
+        <div>
+          <span class="icon"><i class='bx bxs-user'></i></span>
+          <input type="text" id="first_name" name="first_name" placeholder="Nombre" required>
+        </div>
+        <div>
+          <span class="icon"><i class='bx bxs-user-account'></i></span>
+          <input type="text" id="last_name" name="last_name" placeholder="Apellido" required>
+        </div>
+        <div>
+          <span class="icon"><i class='bx bx-mail-send'></i></span>
+          <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+        </div>
+        <div>
+          <span class="icon"><i class='bx bxs-lock-alt'></i></span>
+          <input type="password" id="password1" name="password1" placeholder="Contraseña" required>
+        </div>
+        <div>
+          <span class="icon"><i class='bx bxs-lock-alt'></i></span>
+          <input type="password" id="password2" name="password2" placeholder="Confirmar Contraseña" required>
+        </div>
+        <div>
+          <button class="btn-register" type="submit" name="register_submit">Registrarse</button>
+        </div>
+        <div class="login">
+          <a href="/login/">¿Ya tienes una cuenta?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</section>
+{% endblock %}

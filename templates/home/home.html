@@ -6,52 +6,76 @@ MicroMania
 {% endblock %}
 
 {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home/home.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <h1 class="text-center mb-4">Bienvenido a Micromania estos son nuestros productos</h1>
+    <h1 class="h-destacados">
+        {% if request.GET.q %}
+        Resultados para:<span class="h-highlight"> "{{ request.GET.q }}"</span>
+        {% elif request.GET.categoria %}
+
+        {% if request.GET.categoria == 'Calzado' %}
+        Domina la cancha con nuestro <span class="h-highlight">Calzado</span>
+
+        {% elif request.GET.categoria == 'Indumentaria' %}
+        Viste con nuestra nueva <span class="h-highlight">Indumentaria</span>
+
+        {% elif request.GET.categoria == 'Balones' %}
+        Goles asegurados con nuestros <span class="h-highlight">Balones</span>
+
+        {% elif request.GET.categoria == 'Canilleras' %}
+        Juega seguro con nuestras <span class="h-highlight">Canilleras</span>
+
+        {% else %}
+        Descubre nuestra sección de <span class="h-highlight">{{ request.GET.categoria }}</span>
+        {% endif %}
+
+        {% else %}
+        ¡Nuestros productos más destacados!
+        {% endif %}
+    </h1>
 
     <div class="row">
         {% for producto in productos %}
-            <div class="col-12 col-md-4 col-lg-3 mb-4">
-                <div class="card h-100 shadow-sm">
+        <div class="col-12 col-md-4 col-lg-3 mb-4">
 
-                    {% if producto.imagen %}
-                        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}" style="height: 200px; object-fit: cover;">
-                    {% else %}
-                        <div class="d-flex align-items-center justify-content-center bg-secondary text-white" style="height: 200px;">
-                            <span>Sin Imagen</span>
-                        </div>
-                    {% endif %}
+            <div class="card h-100 card-animada">
 
-                    <div class="card-body d-flex flex-column">
-                        <h6 class="card-subtitle mb-2 text-muted" style="font-size: 0.8rem;">
-                            {{ producto.categoria.nombre }}
-                        </h6>
+                {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}"
+                    style="height: 200px; object-fit: cover;">
+                {% else %}
+                <div class="d-flex align-items-center justify-content-center bg-secondary text-white"
+                    style="height: 200px;">
+                    <span>Sin Imagen</span>
+                </div>
+                {% endif %}
 
-                        <h5 class="card-title">{{ producto.nombre }}</h5>
+                <div class="card-body d-flex flex-column">
+                    <h6 class="card-subtitle mb-2 text-muted" style="font-size: 0.8rem;">
+                        {{ producto.categoria.nombre }}
+                    </h6>
 
-                        <p class="card-text text-truncate">
-                            {{ producto.descripcion }}
-                        </p>
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
 
-                        <div class="mt-auto">
-                            <h4 class="text-success fw-bold">${{ producto.precio_pagina }}</h4>
+                    <p class="card-text text-truncate">
+                        {{ producto.descripcion }}
+                    </p>
 
-                            <a href="#" class="btn btn-primary w-100">
-                                Agregar al Carrito
-                            </a>
-                        </div>
+                    <div class="mt-auto">
+                        <h4 class="precio">${{ producto.precio_pagina }}</h4>
                     </div>
                 </div>
             </div>
+        </div>
         {% empty %}
-            <div class="col-12 text-center">
-                <div class="alert alert-info">
-                    No hay productos disponibles en este momento. ¡Vuelve pronto!
-                </div>
+        <div class="col-12 text-center">
+            <div class="alert alert-info">
+                No hay productos disponibles en este momento. ¡Vuelve pronto!
             </div>
+        </div>
         {% endfor %}
     </div>
 </div>
