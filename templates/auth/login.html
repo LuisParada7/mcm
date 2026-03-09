@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load socialaccount %}
 {% block title %}
 MicroMania
 {% endblock %}
@@ -33,7 +33,7 @@ MicroMania
             <div>
                 <button class="btn-login" type="submit" name="login_submit">Iniciar sesión</button>
             </div>
-            <a href="/" class="btn-google">
+            <a href="{% provider_login_url 'google' %}" class="btn-google">
                 <img src="{% static 'image/logo-google.png' %}">
                 <span>Cuenta de Google</span>
             </a>
