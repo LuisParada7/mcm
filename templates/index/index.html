@@ -11,5 +11,31 @@ MicroMania
 
 {% block content %}
 
-<a href="/home">home</a>
+<section class="hero-section">
+
+    <img src="{% static 'image/index6.png' %}" class="background_index">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content animate-entrance">
+
+        <h1 class="hero-title">¡Domina la cancha<br>con MicroMania!</h1>
+
+        <p class="hero-description">
+            El equipamiento definitivo para los verdaderos cracks del microfútbol.
+            Eleva tu nivel de juego con estilo y rendimiento profesional.
+        </p>
+
+        <div class="hero-buttons">
+            <div class="btn-home">
+                <a href="/home/">COMENZAR YA</a>
+            </div>
+
+            <div class="btn-login">
+                <a href="/login/">INICIAR SESIÓN</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

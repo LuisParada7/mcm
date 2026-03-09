@@ -10,7 +10,7 @@ MicroMania
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4">
+<div class="container mt-4 pb-4 mb-4">
     <h1 class="h-destacados">
         {% if request.GET.q %}
         Resultados para:<span class="h-highlight"> "{{ request.GET.q }}"</span>
@@ -37,43 +37,63 @@ MicroMania
         {% endif %}
     </h1>
 
-    <div class="row">
+    <div class="row gy-4">
         {% for producto in productos %}
         <div class="col-12 col-md-4 col-lg-3 mb-4">
 
             <div class="card h-100 card-animada">
-
-                {% if producto.imagen %}
-                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}"
-                    style="height: 200px; object-fit: cover;">
-                {% else %}
-                <div class="d-flex align-items-center justify-content-center bg-secondary text-white"
-                    style="height: 200px;">
-                    <span>Sin Imagen</span>
-                </div>
-                {% endif %}
-
+                <a href="{% url 'detalle_producto' producto.id %}" style="text-decoration: none; color: inherit;">
+                    {% if producto.imagen %}
+                    <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}"
+                        style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="d-flex align-items-center justify-content-center bg-secondary text-white"
+                        style="height: 200px;">
+                        <span>Sin Imagen</span>
+                    </div>
+                    {% endif %}
+                </a>
                 <div class="card-body d-flex flex-column">
                     <h6 class="card-subtitle mb-2 text-muted" style="font-size: 0.8rem;">
                         {{ producto.categoria.nombre }}
                     </h6>
 
-                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <h5 class="card-title">
+                        <a href="{% url 'detalle_producto' producto.id %}"
+                            style="text-decoration: none; color: inherit;">
+                            {{ producto.nombre }}</a>
+                    </h5>
 
                     <p class="card-text text-truncate">
                         {{ producto.descripcion }}
                     </p>
 
-                    <div class="mt-auto">
-                        <h4 class="precio">${{ producto.precio_pagina }}</h4>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                        <h4 class="precio mb-0">${{ producto.precio_pagina }}</h4>
+
+                        <a href="{% url 'detalle_producto' producto.id %}" class="btn-ver-mas">
+                            Ver más <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         {% empty %}
-        <div class="col-12 text-center">
-            <div class="alert alert-info">
-                No hay productos disponibles en este momento. ¡Vuelve pronto!
+        <div class="col-12 text-center mt-4">
+            <div class="no-product-wrapper">
+                <div class="no-product-icon">
+                    <i class="fas fa-box-open"></i>
+                </div>
+
+                <h3 class="no-product-title">¡Producto no encontrado!</h3>
+                <p class="no-product-text">
+                    No encontramos productos para esta búsqueda o categoría. <br>
+                    ¡Pero tenemos mucho más equipamiento para ti!
+                </p>
+
+                <a href="{% url 'home' %}" class="btn-neon-volver">
+                    <i class="fas fa-undo-alt me-2"></i> Volver al catálogo
+                </a>
             </div>
         </div>
         {% endfor %}

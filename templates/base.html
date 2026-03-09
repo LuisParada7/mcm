@@ -9,7 +9,13 @@
     <link rel="shortcut icon" href="{% static 'image/shorticon-3.png' %}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     {% block extra_css %}{% endblock %}
 </head>
 
@@ -44,7 +50,7 @@
                     </svg>
                 </a>
 
-                <a href="#">
+                <a href="/carrito/">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-bag-fill icon-carrito"
                         viewBox="0 0 16 16">
                         <path
@@ -55,37 +61,101 @@
         </div>
     </nav>
     <div class="category-bar">
-        <div class="container d-flex justify-content-center flex-wrap">
+        <div class="container d-flex justify-content-center flex-wrap gap-2">
+
+            <a href="{% url 'home' %}" class="cat-link {% if not request.GET.categoria %}active{% endif %}">
+                <i class="fas fa-border-all"></i> Todos
+            </a>
 
             <a href="{% url 'home' %}?categoria=Calzado"
                 class="cat-link {% if request.GET.categoria == 'Calzado' %}active{% endif %}">
-                Calzado
+                <i class="fas fa-shoe-prints"></i> Calzado
             </a>
 
             <a href="{% url 'home' %}?categoria=Indumentaria"
                 class="cat-link {% if request.GET.categoria == 'Indumentaria' %}active{% endif %}">
-                Indumentaria
+                <i class="fas fa-tshirt"></i> Indumentaria
             </a>
 
             <a href="{% url 'home' %}?categoria=Canilleras"
                 class="cat-link {% if request.GET.categoria == 'Canilleras' %}active{% endif %}">
-                Canilleras
+                <i class="fas fa-shield-alt"></i> Canilleras
             </a>
 
             <a href="{% url 'home' %}?categoria=Balones"
                 class="cat-link {% if request.GET.categoria == 'Balones' %}active{% endif %}">
-                Balones
+                <i class="fas fa-futbol"></i> Balones
             </a>
 
             <a href="{% url 'home' %}?categoria=Accesorios"
                 class="cat-link {% if request.GET.categoria == 'Accesorios' %}active{% endif %}">
-                Accesorios
+                <i class="fas fa-suitcase"></i> Accesorios
             </a>
 
         </div>
     </div>
     {% block content %}
     {% endblock %}
+    <footer class="gamer-footer">
+
+        <div class="footer-toggle">
+            <div class="arrow-tab">
+                <i class='bx bx-chevron-up'></i>
+            </div>
+            <p>&copy; 2026 MicroMania - Todos los derechos reservados.</p>
+        </div>
+
+        <div class="footer-row">
+            <div class="footer-col">
+                <h4>MicroMania</h4>
+                <p>
+                    La tienda oficial para los verdaderos cracks del microfútbol.
+                    Equípate con lo mejor y domina la cancha.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Explorar</h4>
+                <ul>
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/home/">Tienda</a></li>
+                    <li><a href="/login/">Iniciar Sesión</a></li>
+                    <li><a href="/register/">Registrarse</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-categories">
+                <h4>Categorias</h4>
+                <ul>
+                    <li><a href="{% url 'home' %}?categoria=Calzado">Calzado</a>
+                    </li>
+                    <li><a href="{% url 'home' %}?categoria=Indumentaria">Indumentaria</a>
+                    </li>
+                    <li><a href="{% url 'home' %}?categoria=Canilleras">Canilleras</a>
+                    </li>
+                    <li><a href="{% url 'home' %}?categoria=Balones">Balones</a>
+                    </li>
+                    <li><a href="{% url 'home' %}?categoria=Accesorios">Accesorios</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Síguenos</h4>
+                <div class="social-links">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-twitter'></i></a>
+                    <a href="#"><i class='bx bxl-tiktok'></i></a>
+                </div>
+                <div class="contact-info">
+                    <p><i class='bx bx-map'></i> Bogotá, Colombia</p>
+                    <p><i class='bx bx-envelope'></i> contacto@micromania.com</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>

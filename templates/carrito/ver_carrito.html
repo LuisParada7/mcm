@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+MicroMania | Carrito
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/carrito/ver_carrito.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="carrito-container">
+    <div class="container py-5">
+
+        <h1 class="carrito-titulo mb-4">
+            <i class="fas fa-shopping-cart me-2"></i>Tu Carrito
+        </h1>
+
+        {% if items %}
+
+        <div class="table-responsive carrito-table-wrap mb-4">
+            <table class="table gamer-table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col" class="text-center">Categoría</th>
+                        <th scope="col" class="text-center">Precio Unit.</th>
+                        <th scope="col" class="text-center">Cantidad</th>
+                        <th scope="col" class="text-center">Subtotal</th>
+                        <th scope="col" class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr class="carrito-row">
+                        <td data-label="Producto">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="thumb-wrapper">
+                                    {% if item.variante.producto.imagen %}
+                                        <img src="{{ item.variante.producto.imagen.url }}" alt="{{ item.variante.producto.nombre }}" class="carrito-thumb">
+                                    {% else %}
+                                        <img src="{% static 'image/placeholder.png' %}" alt="Sin imagen" class="carrito-thumb">
+                                    {% endif %}
+                                </div>
+                                <div class="producto-info">
+                                    <span class="producto-nombre d-block">{{ item.variante.producto.nombre }}</span>
+
+                                    <small style="color: #aaa; font-size: 0.9rem;">
+                                        Talla: <span style="color: #ff9500; font-weight: bold;">{{ item.variante.talla.nombre }}</span>
+                                    </small>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td data-label="Categoría" class="text-center">
+                            <span class="badge-categoria">{{ item.variante.producto.categoria.nombre }}</span>
+                        </td>
+
+                        <td data-label="Precio" class="text-center">
+                            ${{ item.variante.producto.precio_pagina }}
+                        </td>
+
+                        <td data-label="Cantidad" class="text-center">
+                            <span class="cantidad-badge">{{ item.cantidad }}</span>
+                        </td>
+
+                        <td data-label="Subtotal" class="text-center subtotal-text">
+                            ${{ item.subtotal }}
+                        </td>
+
+                        <td data-label="Acciones" class="text-center">
+                            <a href="{% url 'eliminar' item.variante.producto.id %}"
+                               class="btn-eliminar" title="Eliminar producto">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="resumen-compra mt-4">
+            <div class="total-wrapper">
+                <span class="label-total">Total a Pagar:</span>
+                <span class="monto-total">${{ total }}</span>
+            </div>
+
+            <div class="acciones-carrito">
+                <a href="{% url 'limpiar' %}" class="btn-gamer btn-danger-gamer">
+                    <i class="fas fa-trash-alt me-2"></i>Vaciar carrito
+                </a>
+
+                <a href="{% url 'home' %}" class="btn-gamer btn-outline-gamer">
+                    <i class="fas fa-arrow-left me-2"></i>Seguir comprando
+                </a>
+
+                <a href="#" class="btn-gamer btn-success-gamer">
+                    Finalizar compra <i class="fas fa-credit-card ms-2"></i>
+                </a>
+            </div>
+        </div>
+
+        {% else %}
+        <div class="carrito-vacio text-center">
+            <div class="icono-vacio">
+                <i class="fas fa-futbol"></i>
+            </div>
+            <h4>¡Tu carrito está vacío!</h4>
+            <p>Parece que aún no has elegido tu equipamiento.</p>
+            <a href="{% url 'home' %}" class="btn-gamer btn-primary-gamer mt-3">
+                <i class="fas fa-store me-2"></i>Ir al Catálogo
+            </a>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

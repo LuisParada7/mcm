@@ -3,7 +3,7 @@ section {
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: calc(90vh - 90px);
+  min-height: calc(90vh - 98px);
 }
 
 .sign-in {
@@ -250,8 +250,9 @@ section {
 
 .btn-login:hover {
   background-color: #000000;
-  color: #ffffff;
+  color: #8A2BE2;
   border-color: #ffffff;
+  border: 1px solid #8A2BE2;
   box-shadow: 0 0 15px #8A2BE2;
 }
 
@@ -259,6 +260,7 @@ section {
   background-color: #8A2BE2;
   color: #ffffff;
   border-color: #ffffff;
+  border: 1px solid #8A2BE2;
   box-shadow: 0 0 15px #8A2BE2;
 }
 

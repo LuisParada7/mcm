@@ -1,8 +1,14 @@
 from django.contrib import admin
-from .models import Categoria, Producto, Pedido, ItemPedido
+from .models import Categoria, Producto, Pedido, ItemPedido, Talla, VarianteProducto
 from import_export.admin import ImportExportModelAdmin
 
-# Configuración para ver los items DENTRO del pedido
+class VarianteProductoInline(admin.TabularInline):
+    model = VarianteProducto
+    extra = 1
+    fields = ('talla', 'stock')
+    verbose_name = "Variante de Stock"
+    verbose_name_plural = "Control de Inventario (Tallas y Stock)"
+
 class ItemPedidoInline(admin.TabularInline):
     model = ItemPedido
     extra = 0
@@ -12,6 +18,13 @@ class ItemPedidoInline(admin.TabularInline):
     def precio_total_calculado(self, obj):
         return obj.precio_total
     precio_total_calculado.short_description = "Subtotal"
+
+@admin.register(Talla)
+class TallaAdmin(ImportExportModelAdmin):
+    list_display = ('nombre', 'tipo')
+    list_filter = ('tipo',)
+    search_fields = ('nombre',)
+    ordering = ['tipo', 'nombre']
 
 
 @admin.register(Categoria)
@@ -31,23 +44,32 @@ class CategoriaAdmin(ImportExportModelAdmin):
 
 @admin.register(Producto)
 class ProductoAdmin(ImportExportModelAdmin):
-    list_display = ('nombre', 'categoria', 'precio', 'stock', 'disponible', 'fecha_creacion')
+    list_display = ('nombre', 'categoria', 'precio', 'stock_total_variantes', 'disponible', 'fecha_creacion')
+
     list_filter = ('categoria', 'disponible', 'fecha_creacion')
     search_fields = ('nombre', 'descripcion', 'categoria__nombre', 'destacado')
     ordering = ['-fecha_creacion']
-    list_editable = ('precio', 'stock', 'disponible')
+
+    list_editable = ('precio', 'disponible')
+
+    inlines = [VarianteProductoInline]
 
     fieldsets = (
         ('Información Principal', {
             'fields': ('nombre', 'categoria', 'descripcion')
         }),
-        ('Inventario y Precios', {
-            'fields': ('precio', 'stock', 'disponible', 'destacado')
+        ('Precios y Visibilidad', {
+            'fields': ('precio', 'disponible', 'destacado')
         }),
         ('Multimedia', {
             'fields': ('imagen',)
         }),
     )
+
+    def stock_total_variantes(self, obj):
+        total = sum(variante.stock for variante in obj.variantes.all())
+        return total
+    stock_total_variantes.short_description = "Stock Total (Sumado)"
 
 
 @admin.register(Pedido)
@@ -74,13 +96,13 @@ class PedidoAdmin(ImportExportModelAdmin):
 
     readonly_fields = ('fecha_pedido',)
 
-
 @admin.register(ItemPedido)
 class ItemPedidoAdmin(ImportExportModelAdmin):
 
-    list_display = ('pedido', 'producto', 'cantidad', 'subtotal_item')
+    list_display = ('pedido', 'variante', 'cantidad', 'subtotal_item')
     list_filter = ('fecha_agregado',)
-    search_fields = ('pedido__usuario__username', 'producto__nombre')
+
+    search_fields = ('pedido__usuario__username', 'variante__producto__nombre')
 
     def subtotal_item(self, obj):
         return obj.precio_total

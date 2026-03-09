@@ -26,6 +26,11 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('login/', views.login_view, name='login'),
     path('register/', views.register, name='register'),
+    path('producto/<int:pk>/', views.detalle_producto, name='detalle_producto'),
+    path('carrito/', views.ver_carrito, name='ver_carrito'),
+    path('agregar/<int:producto_id>/', views.agregar_al_carrito, name='agregar'),
+    path('eliminar/<int:producto_id>/', views.eliminar_del_carrito, name='eliminar'),
+    path('limpiar/', views.limpiar_carrito, name='limpiar'),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+MicroMania
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home/detalle_producto.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="detalle-wrapper">
+    <div class="container detalle-container">
+
+        <div class="detalle-imagen-col">
+            <div class="detalle-imagen-box">
+                {% if producto.imagen %}
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img-producto">
+                {% else %}
+                    <img src="{% static 'image/placeholder.png' %}" alt="Sin imagen" class="img-producto">
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="detalle-info-col">
+
+            <span class="detalle-categoria">
+                {{ producto.categoria.nombre }}
+            </span>
+
+            <h1 class="detalle-titulo">
+                {{ producto.nombre }}
+            </h1>
+
+            <h2 class="detalle-precio">
+                ${{ producto.precio_pagina }}
+            </h2>
+
+            <p class="detalle-descripcion">
+                {{ producto.descripcion }}
+            </p>
+
+            <hr class="detalle-divisor">
+
+            <form action="{% url 'agregar' producto.id %}" method="POST" class="detalle-form">
+                {% csrf_token %}
+
+                <div class="form-row-compact">
+                    <div class="form-group flex-grow-1">
+                        <label for="variante_id" class="form-label">Selecciona la Talla:</label>
+                        <select name="variante_id" id="variante_id" class="form-select-neon" required>
+                            <option value="" selected disabled> Seleccione una talla </option>
+                            {% for variante in variantes_disponibles %}
+                                <option value="{{ variante.id }}">
+                                    Talla: {{ variante.talla.nombre }}
+                                </option>
+                            {% empty %}
+                                <option disabled>Sin stock disponible</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group cantidad-group">
+                        <label for="cantidad" class="form-label">Cantidad:</label>
+                        <input type="number" name="cantidad" id="cantidad" value="1" min="1" max="10" required class="form-input-neon">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-agregar-carrito">
+                    Agregar al Carrito <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-bag-fill icon-carrito-btn"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z" />
+                    </svg>
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

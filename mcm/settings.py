@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'usuarios',
     'catalogo',
+    'carrito',
     'import_export',
 ]
 
@@ -127,6 +128,8 @@ STATICFILES_DIRS = (
 # Media files (Archivos subidos por los usuarios)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+AUTH_USER_MODEL = 'usuarios.User'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
