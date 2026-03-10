@@ -19,15 +19,26 @@
 .carrito-table-wrap {
     background-color: #111;
     border-radius: 15px;
-    border: 1px solid #333;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
     overflow: hidden;
+    border: 2px solid #ff9500;
+    box-shadow: 0 0 10px #ff9500;
 }
 
-.gamer-table {
-    width: 100%;
-    border-collapse: collapse;
-    color: #e0e0e0;
+.icon-carrito-h{
+    width: 40px;
+    transform: translateY(-9px);
+}
+
+.gamer-table tbody tr,
+.gamer-table tbody td {
+    background-color: #080808;
+    color: #ffffff;
+    border-bottom: 1px solid #222 !important;
+}
+
+.gamer-table .producto-nombre {
+    color: #ffffff !important;
 }
 
 .gamer-table thead {
@@ -41,6 +52,7 @@
     text-transform: uppercase;
     font-size: 0.85rem;
     color: #ff9500;
+    background-color: #1a1a1a !important;
 }
 
 .gamer-table td {
@@ -74,8 +86,8 @@
     padding: 5px 10px;
     border-radius: 20px;
     font-size: 0.8rem;
-    color: #bbb;
-    border: 1px solid #444;
+    color: #ff9500;
+    border: 1px solid #ff9500;
 }
 
 .cantidad-badge {
@@ -83,7 +95,8 @@
     padding: 5px 12px;
     border-radius: 5px;
     font-weight: bold;
-    color: white;
+    color: #ff9500;
+    border: 1px solid #ff9500;
 }
 
 .subtotal-text {
@@ -113,15 +126,17 @@
 }
 
 .resumen-compra {
-    background-color: #151515;
+    background-color: #080808;
     padding: 15px 20px;
     border-radius: 15px;
-    border: 1px solid #333;
+    border: 2px solid #8A2BE2;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     gap: 15px;
+    box-shadow: 0 0 10px #8A2BE2;
+    margin-bottom: 30px;
 }
 
 .total-wrapper {
@@ -131,13 +146,14 @@
 .label-total {
     color: #aaa;
     margin-right: 10px;
+    font-weight: 700 ;
 }
 
 .monto-total {
-    color: #ff9500;
+    color: #8A2BE2;
     font-weight: 800;
     font-size: 1.6rem;
-    text-shadow: 0 0 10px rgba(255, 149, 0, 0.3);
+    text-shadow: 0 0 2px #8A2BE2;
 }
 
 .acciones-carrito {
@@ -160,37 +176,38 @@
 }
 
 .btn-danger-gamer {
-    border: 2px solid #d32f2f;
-    color: #ffcccc;
-    background: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    background: #000000;
 }
 .btn-danger-gamer:hover {
-    background-color: #d32f2f;
-    color: white;
-    box-shadow: 0 0 15px rgba(211, 47, 47, 0.4);
+    color: #d32f2f;
+    box-shadow: 0 0 15px #d32f2f;
+    border: 1px solid #d32f2f;
 }
 
 .btn-outline-gamer {
-    border: 2px solid #8A2BE2;
-    color: white;
-    background: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    background: #000000;
 }
 .btn-outline-gamer:hover {
-    background-color: #8A2BE2;
-    box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+    color: #8A2BE2;
+    box-shadow: 0 0 15px #8A2BE2;
+    border: 1px solid #8A2BE2;
 }
 
 .btn-success-gamer {
-    background-color: #39ff14;
+    background-color: #ffffff;
     color: black;
-    border: 2px solid #39ff14;
+    border: 1px solid #ffffff;
     font-weight: 800;
 }
 
 .btn-success-gamer:hover {
-    background-color: transparent;
-    color: #39ff14;
-    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+    background-color: black;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgb(255, 255, 255);
 }
 
 .carrito-vacio {
@@ -198,7 +215,7 @@
     background-color: #111;
     border-radius: 15px;
     border: 2px dashed #333;
-    margin-top: 30px;
+    margin-top: 0px;
 }
 
 .icono-vacio {
@@ -213,13 +230,13 @@
     padding: 15px 30px;
     text-decoration: none;
     border-radius: 30px;
-    font-weight: bold;
+    font-weight: 700;
     display: inline-block;
 }
 
 .btn-primary-gamer:hover {
-    box-shadow: 0 0 20px rgba(255, 149, 0, 0.5);
-    color: black;
+    box-shadow: 0 0 20px #ff9500;
+    color: #ffffff;
 }
 
 @media (max-width: 768px) {

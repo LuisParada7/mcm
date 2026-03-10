@@ -11,10 +11,14 @@ MicroMania | Carrito
 
 {% block content %}
 <div class="carrito-container">
-    <div class="container py-5">
+    <div class="container pt-4 pb-5">
 
         <h1 class="carrito-titulo mb-4">
-            <i class="fas fa-shopping-cart me-2"></i>Tu Carrito
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-bag-fill icon-carrito-h"
+                viewBox="0 0 16 16">
+                <path
+                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z" />
+            </svg> Tu Carrito
         </h1>
 
         {% if items %}
@@ -38,16 +42,19 @@ MicroMania | Carrito
                             <div class="d-flex align-items-center gap-3">
                                 <div class="thumb-wrapper">
                                     {% if item.variante.producto.imagen %}
-                                        <img src="{{ item.variante.producto.imagen.url }}" alt="{{ item.variante.producto.nombre }}" class="carrito-thumb">
+                                    <img src="{{ item.variante.producto.imagen.url }}"
+                                        alt="{{ item.variante.producto.nombre }}" class="carrito-thumb">
                                     {% else %}
-                                        <img src="{% static 'image/placeholder.png' %}" alt="Sin imagen" class="carrito-thumb">
+                                    <img src="{% static 'image/placeholder.png' %}" alt="Sin imagen"
+                                        class="carrito-thumb">
                                     {% endif %}
                                 </div>
                                 <div class="producto-info">
                                     <span class="producto-nombre d-block">{{ item.variante.producto.nombre }}</span>
 
                                     <small style="color: #aaa; font-size: 0.9rem;">
-                                        Talla: <span style="color: #ff9500; font-weight: bold;">{{ item.variante.talla.nombre }}</span>
+                                        Talla: <span style="color: #ff9500; font-weight: bold;">
+                                            {{ item.variante.talla.nombre }}</span>
                                     </small>
                                 </div>
                             </div>
@@ -70,8 +77,8 @@ MicroMania | Carrito
                         </td>
 
                         <td data-label="Acciones" class="text-center">
-                            <a href="{% url 'eliminar' item.variante.producto.id %}"
-                               class="btn-eliminar" title="Eliminar producto">
+                            <a href="{% url 'eliminar' item.variante.producto.id %}" class="btn-eliminar"
+                                title="Eliminar producto">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -83,7 +90,7 @@ MicroMania | Carrito
 
         <div class="resumen-compra mt-4">
             <div class="total-wrapper">
-                <span class="label-total">Total a Pagar:</span>
+                <span class="label-total">TOTAL A PAGAR:</span>
                 <span class="monto-total">${{ total }}</span>
             </div>
 

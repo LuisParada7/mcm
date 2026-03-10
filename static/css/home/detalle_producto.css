@@ -126,7 +126,7 @@
 }
 
 .form-input-neon:focus {
-    box-shadow: 0 0 10px rgba(255, 149, 0, 0.5);
+    box-shadow: 0 0 10px #ff9500;
 }
 
 .btn-agregar-carrito {
@@ -141,10 +141,14 @@
     border: none;
     border-radius: 50px;
     font-size: 1.1rem;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.btn-agregar-carrito:hover .icon-carrito-btn{
+    color: #ffffff;
 }
 
 .btn-agregar-carrito:hover {
@@ -156,10 +160,7 @@
     color: #000000;
     width: 25px;
     height: 25px;
-}
-
-.icon-carrito-btn:hover{
-    color: #ffffff;
+    transform: translateY(-2px);
 }
 
 .form-select-neon {

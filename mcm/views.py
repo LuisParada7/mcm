@@ -75,7 +75,7 @@ def detalle_producto(request, pk):
     }
     return render(request, 'home/detalle_producto.html', context)
 
-@login_required
+@login_required(login_url='login')
 def agregar_al_carrito(request, producto_id):
     if request.method == 'POST':
         variante_id = request.POST.get('variante_id')
@@ -101,7 +101,7 @@ def agregar_al_carrito(request, producto_id):
 
     return redirect('detalle_producto', pk=producto_id)
 
-@login_required
+@login_required(login_url='login')
 def ver_carrito(request):
     carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
     items = carrito.items.select_related('variante__producto', 'variante__talla')
@@ -114,7 +114,7 @@ def ver_carrito(request):
     })
 
 
-@login_required
+@login_required(login_url='login')
 def eliminar_del_carrito(request, producto_id):
     """Elimina un item del carrito basado en el ID del producto padre"""
     carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
@@ -126,7 +126,7 @@ def eliminar_del_carrito(request, producto_id):
 
     return redirect('ver_carrito')
 
-@login_required
+@login_required(login_url='login')
 def limpiar_carrito(request):
     carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
     carrito.items.all().delete()
