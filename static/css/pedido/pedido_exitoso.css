@@ -1,0 +1,82 @@
+.no-product-wrapper {
+    background-color: #ffffff;
+    border: 3px dashed #8A2BE2;
+    border-radius: 20px;
+    padding: 35px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(138, 43, 226, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.no-product-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(138, 43, 226, 0.15);
+}
+
+.no-product-icon {
+    font-size: 5rem;
+    color: #ff9500;
+    margin-bottom: 15px;
+    animation: flotarCaja 3s ease-in-out infinite;
+}
+
+.no-product-title {
+    font-weight: 800;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.no-product-text {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+    line-height: 1.6;
+}
+
+.btn-neon-volver {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 30px;
+    background-color: #8A2BE2;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border: 2px solid #8A2BE2;
+    transition: all 0.3s ease;
+}
+
+.btn-neon-volver:hover {
+    color: #ffffff;
+    box-shadow: 0 0 25px #8A2BE2;
+}
+
+@keyframes flotarCaja {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.h-destacados {
+    font-weight: 800;
+    color: #1a1a1a;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.h-highlight{
+    color: #ff9500;
+}
+
+.category-bar{
+    display: none;
+}

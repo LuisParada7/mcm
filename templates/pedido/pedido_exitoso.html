@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+MicroMania
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pedido/pedido_exitoso.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="h-destacados">¡GRACIAS POR TU COMPRA! TU <span class="h-highlight">PEDIDO</span> SE HA REALIZADO CON <span class="h-highlight">ÉXITO</span></h1>
+<div class="col-12 text-center mt-4">
+    <div class="no-product-wrapper">
+        <div class="no-product-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+
+        <h3 class="no-product-title">¡Tu orden ha sido confirmada!</h3>
+        <p class="no-product-text">
+           Hemos recibido tu orden correctamente. Muy pronto uno de nuestros agentes se pondrá en contacto contigo al número que nos proporcionaste para confirmar los detalles y despachar tu equipamiento. <br>
+            ¡Aún tenemos mucho más equipamiento para ti!
+        </p>
+
+        <a href="{% url 'home' %}" class="btn-neon-volver">
+            <i class="fas fa-undo-alt me-2"></i> Volver al catálogo
+        </a>
+    </div>
+</div>
+
+{% endblock %}

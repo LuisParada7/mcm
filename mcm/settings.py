@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'usuarios',
     'catalogo',
     'carrito',
+    'pedidos',
     'import_export',
     'django.contrib.sites',
     'allauth',
@@ -153,3 +154,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
 LOGIN_REDIRECT_URL = 'home'
+
+MERCADO_PAGO_ACCESS_TOKEN = "APP_USR-3476422609071542-031416-00de3de89a734cbb875dba4ada0432ae-3267434436"

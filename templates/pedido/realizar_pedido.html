@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+MicroMania
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pedido/realizar_pedido.css' %}">
+{% endblock %}
+
+{% block content %}
+<body background="{% static 'image/fondo.png' %}">
+<div class="container carrito-container">
+
+    <form method="POST" action="{% url 'realizar_pedido' %}">
+        {% csrf_token %}
+
+        <div class="row justify-content-center g-4 mt-2 mb-5">
+
+            <div class="col-lg-6">
+
+                <div class="resumen-compra p-4 mb-4 caja-formulario">
+                    <h4 class="mb-4 titulo-seccion">
+                        <i class="fas fa-map-location-dot me-2"></i> 1. Datos de Envío
+                    </h4>
+
+                    <div class="row g-0 justify-content-center">
+                        <div class="col-sm-6 d-flex justify-content-center">
+                            <div class="inputbox">
+                                {{ form.nombre_completo }}
+                                <label>{{ form.nombre_completo.label }}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 d-flex justify-content-center">
+                            <div class="inputbox">
+                                {{ form.telefono }}
+                                <label>{{ form.telefono.label }}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 d-flex justify-content-center">
+                            <div class="inputbox">
+                                {{ form.ciudad }}
+                                <label>{{ form.ciudad.label }}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 d-flex justify-content-center">
+                            <div class="inputbox">
+                                {{ form.direccion }}
+                                <label>{{ form.direccion.label }}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <div class="inputbox" style="width: 100%; max-width: 650px;">
+                                {{ form.detalles_direccion }}
+                                <label>{{ form.detalles_direccion.label }}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <div class="inputbox" style="width: 100%; max-width: 650px; border: none;">
+                                <span style="color:#aaa; font-size:0.85em; margin-left:5px;">Notas del envío</span>
+                                {{ form.notas_pedido }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resumen-compra p-4 caja-metodo-pago">
+                    <h4 class="mb-4 titulo-seccion titulo-pago">
+                        <i class="fas fa-wallet me-2"></i> 2. Método de Pago
+                    </h4>
+                    <div class="metodos-pago-wrapper">
+                        {% for radio in form.metodo_pago %}
+                            <div class="form-check mb-3 p-3 border border-secondary rounded bg-dark opcion-pago">
+                                {{ radio.tag }}
+                                <label class="form-check-label ms-2 fw-bold text-white w-100 label-pago" for="{{ radio.id_for_label }}">
+                                    {{ radio.choice_label }}
+                                    {% if 'contraentrega' in radio.choice_label|lower %}
+                                        <i class="fas fa-hand-holding-dollar float-end text-success fs-4"></i>
+                                    {% elif 'pse' in radio.choice_label|lower %}
+                                        <i class="fas fa-building-columns float-end text-info fs-4"></i>
+                                    {% else %}
+                                        <i class="fas fa-credit-card float-end text-warning fs-4"></i>
+                                    {% endif %}
+                                </label>
+                            </div>
+                        {% endfor %}
+                        {% if form.metodo_pago.errors %}
+                            <div class="text-danger mt-2 fw-bold"><i class="fas fa-exclamation-triangle"></i> {{ form.metodo_pago.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="resumen-compra p-4 position-sticky caja-resumen-lateral">
+                    <h4 class="mb-4 text-center titulo-verde-neon">Tu Pedido</h4>
+
+                    <div class="d-flex justify-content-between mb-3 border-bottom border-secondary pb-3">
+                        <span class="caja-resumen-text">Cantidad de items:</span>
+                        <span class="fw-bold fs-5">{{ carrito.items.count }}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-4 mt-3 align-items-center">
+                        <span class="caja-resumen-text">Total:</span>
+                        <span class="monto-total fs-3">${{ total }}</span>
+                    </div>
+
+                    <button type="submit" class="btn-gamer btn-success-gamer w-100 mb-3 py-3 btn-confirmar">
+                        Confirmar Pedido <i class="fas fa-check-double ms-2"></i>
+                    </button>
+
+                    <a href="{% url 'ver_carrito' %}" class="btn-gamer btn-outline-gamer w-100">
+                        <i class="fas fa-arrow-left me-2"></i> Volver
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+</body>
+{% endblock %}

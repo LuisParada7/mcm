@@ -57,36 +57,4 @@ class VarianteProducto(models.Model):
     def esta_disponible(self):
         return self.stock > 0
 
-class Pedido(models.Model):
-    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    fecha_pedido = models.DateTimeField(auto_now_add=True)
-    completado = models.BooleanField(default=False)
-    id_transaccion = models.CharField(max_length=100, null=True, blank=True)
 
-    def __str__(self):
-        estado = "Carrito" if not self.completado else "Completado"
-        return f"Pedido {self.id} de {self.usuario.username} ({estado})"
-
-    @property
-    def precio_total_pedido(self):
-        items = self.itempedido_set.all()
-        total = sum([item.precio_total for item in items])
-        return total
-
-class ItemPedido(models.Model):
-    variante = models.ForeignKey(VarianteProducto, on_delete=models.SET_NULL, null=True, related_name="items_pedido")
-
-    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
-    cantidad = models.IntegerField(default=0)
-    fecha_agregado = models.DateTimeField(auto_now_add=True)
-
-    @property
-    def precio_total(self):
-        if self.variante and self.variante.producto:
-             return self.variante.producto.precio * self.cantidad
-        return 0
-
-    def __str__(self):
-        if self.variante:
-            return f"{self.cantidad} x {self.variante.producto.nombre} (Talla: {self.variante.talla.nombre})"
-        return f"{self.cantidad} x [Producto No Disponible]"

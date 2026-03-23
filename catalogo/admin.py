@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria, Producto, Pedido, ItemPedido, Talla, VarianteProducto
+from .models import Categoria, Producto, Talla, VarianteProducto
 from import_export.admin import ImportExportModelAdmin
 
 class VarianteProductoInline(admin.TabularInline):
@@ -9,15 +9,6 @@ class VarianteProductoInline(admin.TabularInline):
     verbose_name = "Variante de Stock"
     verbose_name_plural = "Control de Inventario (Tallas y Stock)"
 
-class ItemPedidoInline(admin.TabularInline):
-    model = ItemPedido
-    extra = 0
-    readonly_fields = ('precio_total_calculado',)
-    can_delete = True
-
-    def precio_total_calculado(self, obj):
-        return obj.precio_total
-    precio_total_calculado.short_description = "Subtotal"
 
 @admin.register(Talla)
 class TallaAdmin(ImportExportModelAdmin):
@@ -72,38 +63,3 @@ class ProductoAdmin(ImportExportModelAdmin):
     stock_total_variantes.short_description = "Stock Total (Sumado)"
 
 
-@admin.register(Pedido)
-class PedidoAdmin(ImportExportModelAdmin):
-    list_display = ('id', 'usuario', 'fecha_pedido', 'completado', 'total_pagar', 'id_transaccion')
-    list_filter = ('completado', 'fecha_pedido')
-    search_fields = ('usuario__username', 'usuario__email', 'id_transaccion')
-    ordering = ['-fecha_pedido']
-
-    inlines = [ItemPedidoInline]
-
-    def total_pagar(self, obj):
-        return f"${obj.precio_total_pedido}"
-    total_pagar.short_description = "Total del Pedido"
-
-    fieldsets = (
-        ('Datos del Cliente', {
-            'fields': ('usuario', 'fecha_pedido')
-        }),
-        ('Estado del Pedido', {
-            'fields': ('completado', 'id_transaccion')
-        }),
-    )
-
-    readonly_fields = ('fecha_pedido',)
-
-@admin.register(ItemPedido)
-class ItemPedidoAdmin(ImportExportModelAdmin):
-
-    list_display = ('pedido', 'variante', 'cantidad', 'subtotal_item')
-    list_filter = ('fecha_agregado',)
-
-    search_fields = ('pedido__usuario__username', 'variante__producto__nombre')
-
-    def subtotal_item(self, obj):
-        return obj.precio_total
-    subtotal_item.short_description = "Subtotal"
