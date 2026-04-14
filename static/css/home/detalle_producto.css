@@ -3,6 +3,9 @@
     min-height: auto;
     background-color: #000000;
     color: white;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .detalle-container {

@@ -13,7 +13,11 @@ MicroMania
 
 <section class="hero-section">
 
-    <img src="{% static 'image/index6.png' %}" class="background_index">
+    <picture class="background-container">
+        <source srcset="{% static 'image/index-mobile2.png' %}" media="(width < 565px)"
+            class="background_index_mobile">
+        <img src="{% static 'image/index6.png' %}" class="background_index">
+    </picture>
 
     <div class="hero-overlay"></div>
 

@@ -47,19 +47,30 @@ MicroMania
                 {% csrf_token %}
 
                 <div class="form-row-compact">
-                    <div class="form-group flex-grow-1">
-                        <label for="variante_id" class="form-label">Selecciona la Talla:</label>
-                        <select name="variante_id" id="variante_id" class="form-select-neon" required>
-                            <option value="" selected disabled> Seleccione una talla </option>
-                            {% for variante in variantes_disponibles %}
-                                <option value="{{ variante.id }}">
-                                    Talla: {{ variante.talla.nombre }}
-                                </option>
-                            {% empty %}
-                                <option disabled>Sin stock disponible</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+
+                    {% if producto.categoria.nombre|lower == 'balones' or producto.categoria.nombre|lower == 'accesorios' %}
+
+                        {% if variantes_disponibles %}
+                            <input type="hidden" name="variante_id" value="{{ variantes_disponibles.0.id }}">
+                        {% endif %}
+
+                    {% else %}
+
+                        <div class="form-group flex-grow-1">
+                            <label for="variante_id" class="form-label">Selecciona la Talla:</label>
+                            <select name="variante_id" id="variante_id" class="form-select-neon" required>
+                                <option value="" selected disabled> Seleccione una talla </option>
+                                {% for variante in variantes_disponibles %}
+                                    <option value="{{ variante.id }}">
+                                        Talla: {{ variante.talla.nombre }}
+                                    </option>
+                                {% empty %}
+                                    <option disabled>Sin stock disponible</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                    {% endif %}
 
                     <div class="form-group cantidad-group">
                         <label for="cantidad" class="form-label">Cantidad:</label>
