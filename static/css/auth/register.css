@@ -147,19 +147,19 @@ section {
     box-shadow: 0 0 15px #ff9500;
 }
 
-.login {
+.login-link {
     margin-top: 10px;
     margin-bottom: 0;
     padding: 0;
 }
 
-.login a {
+.login-link a {
   color: #ff9500;
   text-decoration: none;
   font-size: 0.9rem;
 }
 
-.login a:hover {
+.login-link a:hover {
   color: #8A2BE2;
   transition: color 0.3s ease;
 }
@@ -204,7 +204,7 @@ section {
     display: none;
 }
 
-.form-side span{
+.register-subtitle{
     display: none;
 }
 
@@ -227,9 +227,10 @@ section {
 .register-title {
   color: rgb(210, 208, 208);
   margin-bottom: 10px;
+  display: block;
 }
 
-.form-side span {
+.register-subtitle {
   color: #bbbbbb;
   display: block;
   margin-bottom: 20px;

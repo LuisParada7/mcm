@@ -39,7 +39,7 @@ MicroMania
     </div>
     <div class="form-side">
       <h2 class="register-title">¡Bienvenido a MicroMania!</h2>
-            <span>Ingresa tus datos para crear tu cuenta:</span>
+            <span class="register-subtitle">Ingresa tus datos para crear tu cuenta:</span>
       <form action="" method="post">
         {% csrf_token%}
         <div>
@@ -69,7 +69,7 @@ MicroMania
         <div>
           <button class="btn-register" type="submit" name="register_submit">Registrarse</button>
         </div>
-        <div class="login">
+        <div class="login-link">
           <a href="/login/">¿Ya tienes una cuenta?</a>
         </div>
       </form>
