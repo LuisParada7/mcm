@@ -240,6 +240,19 @@
 }
 
 @media (max-width: 768px) {
+
+    .carrito-table-wrap {
+        width: 92%;
+        margin: 0 auto 20px auto;
+    }
+
+    .resumen-compra {
+        flex-direction: column;
+        text-align: center;
+        width: 92%;
+        margin: 0 auto 30px auto;
+    }
+
     .resumen-compra {
         flex-direction: column;
         text-align: center;
@@ -262,7 +275,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px;
+        padding: 15px 20px;
         text-align: right;
         border-bottom: 1px solid #333;
     }
@@ -273,5 +286,19 @@
         color: #8A2BE2;
         text-transform: uppercase;
         font-size: 0.8rem;
+    }
+
+    .producto-nombre {
+        font-size: 0.8rem;
+    }
+
+    .carrito-titulo{
+        font-size: 1.5rem;
+        margin-top: 20px;
+    }
+
+    .icon-carrito-h{
+        width: 30px;
+        transform: translateY(-6px);
     }
 }

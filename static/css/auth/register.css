@@ -199,3 +199,41 @@ section {
     background-color: #ff9500;
     color: white;
 }
+
+.login-title {
+    display: none;
+}
+
+.form-side span{
+    display: none;
+}
+
+@media (width <=564px) {
+
+
+.register-card{
+    width: 900px;
+    height: 650px;
+}
+
+.image-side{
+    display: none;
+}
+
+.form-side{
+    width: 100%;
+}
+
+.register-title {
+  color: rgb(210, 208, 208);
+  margin-bottom: 10px;
+}
+
+.form-side span {
+  color: #bbbbbb;
+  display: block;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+}

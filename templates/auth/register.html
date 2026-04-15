@@ -38,14 +38,16 @@ MicroMania
        </div>
     </div>
     <div class="form-side">
+      <h2 class="register-title">¡Bienvenido a MicroMania!</h2>
+            <span>Ingresa tus datos para crear tu cuenta:</span>
       <form action="" method="post">
         {% csrf_token%}
         <div>
-          <span class="icon"><i class='bx bxs-user-account'></i></span>
+          <span class="icon"><i class='bx bxs-user'></i></span>
           <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
         </div>
         <div>
-          <span class="icon"><i class='bx bxs-user'></i></span>
+          <span class="icon"><i class='bx bxs-user-account'></i></span>
           <input type="text" id="first_name" name="first_name" placeholder="Nombre" required>
         </div>
         <div>
