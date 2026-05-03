@@ -195,7 +195,7 @@ body, html {
     .hero-content {
         width: 100%;
         margin-left: 0;
-        margin-top: 150px;
+        margin-top: 60px;
         padding: 0 20px;
         text-align: center;
         display: flex;
@@ -204,13 +204,13 @@ body, html {
     }
 
     .hero-title {
-        font-size: 2.3rem;
+        font-size: 2.2rem;
         margin-bottom: 15px;
         text-shadow: 2px 2px 0px rgba(138, 43, 226, 0.4);
     }
 
     .hero-description {
-        font-size: 1.5rem;
+        font-size: 1rem;
         margin-bottom: 30px;
     }
 
@@ -225,6 +225,6 @@ body, html {
     .btn-home {
         width: 100%;
         margin-top: 0;
-        height: 50px;
+        height: 55px;
     }
 }
